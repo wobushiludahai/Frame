@@ -2,7 +2,7 @@
  * @Description: a simple timer frame
  * @Author: land sea
  * @Date: 2019-11-08 17:56:13
- * @LastEditTime: 2019-11-09 11:05:07
+ * @LastEditTime: 2019-11-10 14:34:39
  * @LastEditors: Please set LastEditors
  */
 
@@ -25,13 +25,13 @@ typedef struct timer_t
     TIMER    *next;
 }TIMER;
 
-enum timer_state_code
+typedef enum timer_state_code
 {
     TIMER_STATECODE_ZERO = 0,
     TIMER_STATECODE_SET_OK,             //set success
     TIMER_STATECODE_NONE_EXIST,         //timer does not exist
     TIMER_STATECODE_DELETE_OK,          //delete success
-};
+}STATE_CODE;
 
 /**
  * @description: initialize timer param
