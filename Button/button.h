@@ -2,7 +2,7 @@
  * @Description: a simple button frame  V 1.0
  * @Author: land sea
  * @Date: 2019-11-13 15:46:15
- * @LastEditTime: 2019-11-14 23:14:41
+ * @LastEditTime: 2019-11-15 09:20:58
  * @LastEditors: Please set LastEditors
  */
 #ifndef _FRAME_BUTTON_H_
@@ -11,6 +11,12 @@
 #include <stdint.h>
 #include <stddef.h>
 
+typedef void (*btncallback)(void *);
+
+#define BUTTON_TICK_INTERVAL            5       //tick 时间为5ms
+#define BUTTON_TICKS_DEBOUNCE           3       //消抖
+#define BUTTON_TICKS_SHORT              60      
+#define BUTTON_TICKS_LONG               200     //长按
 
 typedef enum button_event_code
 {
@@ -28,7 +34,16 @@ typedef enum button_event_code
 
 typedef struct
 {
-    
+    uint8_t     (*get_button_level)(void);
+    uint8_t     curlevel;                       //当前电平
+    uint8_t     prelevel;                       //之前电平
+    uint16_t    timer_count;
+    uint8_t     button_prestate;                //之前状态
+    uint8_t     button_state;                   //状态
+    uint8_t     debounce_cnt;                   //消抖
+    uint8_t     button_event;
+    btncallback cb[number_of_event];            //回调函数列表
+    BUTTON      *next;
 }BUTTON;
 
 
