@@ -2,7 +2,7 @@
  * @Description: a simple button frame  V 1.0
  * @Author: land sea
  * @Date: 2019-11-13 15:46:15
- * @LastEditTime: 2019-11-15 09:20:58
+ * @LastEditTime: 2019-11-15 10:02:23
  * @LastEditors: Please set LastEditors
  */
 #ifndef _FRAME_BUTTON_H_
@@ -31,6 +31,13 @@ typedef enum button_event_code
     BUTTON_EVENT_NONE
 }BUTTON_EVENT;
 
+typedef enum button_state_code
+{
+    BUTTON_STATECODE_ZERO = 0,
+    BUTTON_STATECODE_SET_OK,             //set success
+    BUTTON_STATECODE_NONE_EXIST,         //button does not exist
+    BUTTON_STATECODE_REMOVE_OK,          //remove success
+}BUTTON_STATE_CODE;
 
 typedef struct
 {
