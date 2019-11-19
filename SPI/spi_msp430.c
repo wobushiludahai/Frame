@@ -2,13 +2,14 @@
  * @Description: msp430 spi
  * @Author: land sea
  * @Date: 2019-11-18 20:43:34
- * @LastEditTime: 2019-11-18 20:58:50
+ * @LastEditTime: 2019-11-19 08:42:28
  * @LastEditors: Please set LastEditors
  */
 
 #include "spi.h"
 #include "driverlib.h"      //MSP430底层包
 
+#ifdef MSP430_SPI_EN
 /**
  * @description: SPI初始化
  * @param {type} 
@@ -61,6 +62,7 @@ void Drv_SpiTransData(UINT8 *pTxData, UINT16 size)
         }
     }
 }
+
 /**
  * @description: SPI主双设备接收函数
  * @param {type} 
@@ -159,10 +161,6 @@ void Drv_SpiSpeedChanged(UINT8 speed)
     param.desiredSpiClock = speed;
 
     EUSCI_B_SPI_changeMasterClock(EUSCI_B0_BASE, &param);
-
-    // EUSCI_B_SPI_initMasterParam param = {0};
-    // param.desiredSpiClock = speed;
-    // EUSCI_B_SPI_initMaster(EUSCI_B0_BASE, &param);
-    // //Enable SPI module
-    // EUSCI_B_SPI_enable(EUSCI_B0_BASE);
 }
+
+#endif /*MSP430_SPI_EN*/
