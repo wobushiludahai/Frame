@@ -2,7 +2,7 @@
  * @Description: SPI 接口
  * @Author: land sea
  * @Date: 2019-11-18 20:43:34
- * @LastEditTime: 2019-11-19 08:42:47
+ * @LastEditTime: 2019-11-23 16:23:42
  * @LastEditors: Please set LastEditors
  */
 #ifndef _FRAME_SPI_H_
@@ -19,10 +19,24 @@
 extern "C" {
 #endif
 
+#ifdef MSP430_SPI_EN
+#include "driverlib.h"      //MSP430底层包
+
 extern void Drv_SpiInit(void);
 extern void Drv_SpiTransData(uint8_t *pTxData, uint16_t size);
 extern void Drv_SpiRecvData(uint8_t *pRxData, uint16_t size);
 extern void Drv_SpiSendAndRecv(uint8_t *pTxData,uint8_t *pRxData, uint16_t size);
+#endif /*MSP430_SPI_EN*/
+
+#ifdef STM32_SPI_EN
+#include "stm32l4xx_hal_spi.h"      //STM32 hal spi驱动
+
+extern void Drv_SpiInit(void);
+extern void SpiTransData(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+extern void Drv_SpiRecvData(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+extern HAL_StatusTypeDef Drv_SpiSendAndRecv(SPI_HandleTypeDef *hspi, uint8_t *pTxData, uint8_t *pRxData, uint16_t Size,
+                                          uint32_t Timeout);
+#endif /*STM32_SPI_EN*/
 
 #ifdef __cplusplus
 }
