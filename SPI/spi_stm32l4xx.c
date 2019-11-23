@@ -2,7 +2,7 @@
  * @Description: STM32 SPI
  * @Author: land sea
  * @Date: 2019-11-18 20:43:34
- * @LastEditTime: 2019-11-23 16:23:07
+ * @LastEditTime: 2019-11-23 16:32:32
  * @LastEditors: Please set LastEditors
  */
 #include "spi.h"
@@ -17,6 +17,27 @@ SPI_HandleTypeDef SPI_InitStruct;
  */
 void Drv_SpiInit(void)
 {
+	GPIO_InitTypeDef  GPIO_InitStruct;
+
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+    
+    //SPI2:CS
+    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull  = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Pin   = GPIO_PIN_9;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, SET);
+
+	//SPI2: SCK,PB13 MISO,PB14  MOSI,PB15
+	GPIO_InitStruct.Mode  = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull  = GPIO_PULLUP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+	GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
+	GPIO_InitStruct.Pin = GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    
     SET_BIT(RCC->APB1ENR1, RCC_APB1ENR1_SPI2EN);    //SPI2使能
 
     SPI_InitStruct.Instance = SPI2;
