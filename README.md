@@ -11,3 +11,5 @@ SPI通讯驱动，包含STM32、LPC1752、MSP430
 回调函数简单示例
 ## filedownload_with_python
 使用python 基于tcp实现简单的文件下载器
+## websockets_with_python
+一个简单的websockets demo
