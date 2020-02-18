@@ -19,3 +19,5 @@ windows下简单的C语言socket demo
 数据结构
 ## DEBUG  
 错误打印宏定义等级
+## MACRO
+通过变量对不同宏定义进行对应，用于组件独立性设计
