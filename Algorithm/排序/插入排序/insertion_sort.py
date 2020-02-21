@@ -12,7 +12,7 @@ def insert_sort(raw_list):
     return raw_list
 
 #测试
-print("冒泡排序测试")
+print("插入排序测试")
 print("排序前: ")
 testbuf= [100, 7, 9, -2, 20, -50]
 print(testbuf)

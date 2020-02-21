@@ -7,7 +7,7 @@ def select_sort(raw_list):
                 raw_list[index],raw_list[i]=raw_list[i],raw_list[index]
     return raw_list
 
-print("冒泡排序测试")
+print("选择排序测试")
 print("排序前: ")
 testbuf= [100, 7, 9, -2, 20, -50]
 print(testbuf)
